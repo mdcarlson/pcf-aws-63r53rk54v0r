@@ -1,0 +1,7 @@
+# For terraform.tfvars
+export TF_VAR_access_key=
+export TF_VAR_secret_key=
+
+# For backend
+export AWS_ACCESS_KEY_ID=
+export AWS_SECRET_ACCESS_KEY=
