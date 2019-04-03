@@ -34,7 +34,7 @@ resource "random_integer" "bucket" {
 }
 
 module "infra" {
-  source = "../modules/infra"
+  source = "../../terraform/modules/infra"
 
   region             = "${var.region}"
   env_name           = "${var.env_name}"
@@ -50,7 +50,7 @@ module "infra" {
 }
 
 module "ops_manager" {
-  source = "../modules/ops_manager"
+  source = "../../terraform/modules/ops_manager"
 
   vm_count       = "${var.ops_manager_vm ? 1 : 0}"
   optional_count = "${var.optional_ops_manager ? 1 : 0}"
@@ -75,7 +75,7 @@ module "ops_manager" {
 }
 
 module "control_plane" {
-  source                  = "../modules/control_plane"
+  source                  = "../../terraform/modules/control_plane"
   vpc_id                  = "${module.infra.vpc_id}"
   env_name                = "${var.env_name}"
   availability_zones      = "${var.availability_zones}"
@@ -90,7 +90,7 @@ module "control_plane" {
 }
 
 module "rds" {
-  source = "../modules/rds"
+  source = "../../terraform/modules/rds"
 
   rds_db_username    = "${var.rds_db_username}"
   rds_instance_class = "${var.rds_instance_class}"
