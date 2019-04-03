@@ -47,7 +47,7 @@ resource "random_integer" "bucket" {
 }
 
 module "infra" {
-  source = "../modules/infra"
+  source = "../../terraform/modules/infra"
 
   region             = "${var.region}"
   env_name           = "${var.env_name}"
@@ -64,7 +64,7 @@ module "infra" {
 }
 
 module "ops_manager" {
-  source         = "../modules/ops_manager"
+  source         = "../../terraform/modules/ops_manager"
   vm_count       = "${var.ops_manager_vm == false ? 0 : (var.ops_manager_ami == "" ? 0 : 1)}"
   optional_count = "${var.optional_ops_manager ? 1 : 0}"
   subnet_id      = "${local.ops_man_subnet_id}"
@@ -87,7 +87,7 @@ module "ops_manager" {
 }
 
 module "pas_certs" {
-  source = "../modules/certs"
+  source = "../../terraform/modules/certs"
 
   subdomains = ["*.apps", "*.sys", "*.login.sys", "*.uaa.sys"]
   env_name   = "${var.env_name}"
@@ -100,7 +100,7 @@ module "pas_certs" {
 }
 
 module "isoseg_certs" {
-  source = "../modules/certs"
+  source = "../../terraform/modules/certs"
 
   subdomains    = ["*.iso"]
   env_name      = "${var.env_name}"
@@ -114,7 +114,7 @@ module "isoseg_certs" {
 }
 
 module "pas" {
-  source = "../modules/pas"
+  source = "../../terraform/modules/pas"
 
   env_name           = "${var.env_name}"
   region             = "${var.region}"
@@ -142,7 +142,7 @@ module "pas" {
 }
 
 module "rds" {
-  source = "../modules/rds"
+  source = "../../terraform/modules/rds"
 
   rds_db_username    = "${var.rds_db_username}"
   rds_instance_class = "${var.rds_instance_class}"
