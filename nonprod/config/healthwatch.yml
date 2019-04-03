@@ -23,7 +23,8 @@ product-properties:
   .properties.boshtasks:
     value: enable
   .properties.boshtasks.enable.bosh_taskcheck_password:
-    value: ((taskcheck_secret))
+    value:
+      secret: ((taskcheck_secret))
   .properties.boshtasks.enable.bosh_taskcheck_username:
     value: ((taskcheck_client))
   .properties.indicators_selector:
