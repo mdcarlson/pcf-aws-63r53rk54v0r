@@ -1,0 +1,11 @@
+---
+# terraform input access_key
+access_key_id: ((opsman-aws-access-key))
+# terraform input secret_key
+secret_access_key: ((opsman-aws-secret-key))
+# terraform output public_subnet_ids[0]
+vpc_subnet_id: subnet-0dbcdb9d8fb6034ff
+# terrafrom output ops_manager_security_group_id
+security_group_id: sg-08dcb589c376de7b0
+# terraform output ops_manager_public_ip
+public_ip: 54.183.10.92

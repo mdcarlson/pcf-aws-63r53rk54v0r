@@ -1,0 +1,25 @@
+---
+opsman-configuration:
+  aws:
+    # terraform input access_key
+    access_key_id: ((access_key_id))
+    # terraform input secret_key
+    secret_access_key: ((secret_access_key))
+    # terraform output region
+    region: us-west-1
+    vm_name: nonprod-ops-manager-vm
+    boot_disk_size: 100
+    # terraform output public_subnet_ids[0]
+    vpc_subnet_id: ((vpc_subnet_id))
+    # terrafrom output ops_manager_security_group_id
+    security_group_id: ((security_group_id))
+    # terraform output ops_manager_ssh_public_key_name
+    key_pair_name: nonprod-ops-manager-key
+    # terraform output ops_manager_iam_instance_profile_name
+    iam_instance_profile_name: nonprod_ops_manager
+    instance_type: m5.large
+    # At least one IP address (public or private) needs to be assigned to the VM.
+    # terraform output ops_manager_public_ip
+    public_ip: ((public_ip))
+    # terraform output ops_manager_private_ip
+    private_ip:

@@ -1,0 +1,49 @@
+---
+project: "nonprod"
+
+apps_domain: apps.nonprod.aws.63r53rk54v0r.com
+sys_domain: sys.nonprod.aws.63r53rk54v0r.com
+
+network_name: "pas"
+
+mysql_notification_email: "aneumann@pivotal.io"
+
+# terraform output ops_manager_iam_user_access_key | pbcopy
+s3_access_key: ((opsman-iam-access-key))
+# terraform output ops_manager_iam_user_secret_key | pbcopy
+s3_secret_key: ((opsman-iam-secret-key))
+# terraform output pas_buildpacks_bucket | pbcopy
+buildpacks_bucket: "nonprod-buildpacks-bucket-47422"
+# terraform output pas_droplets_bucket | pbcopy
+droplets_bucket: "nonprod-droplets-bucket-47422"
+# terraform output pas_packages_bucket | pbcopy
+packages_bucket: "nonprod-packages-bucket-47422"
+# terraform output pas_resources_bucket | pbcopy
+resources_bucket: "nonprod-resources-bucket-47422"
+
+credhub_encryption_secret: ((pas-credhub-encryption-secret))
+
+ssh_tg:
+- alb:nonprod-ssh-tg
+
+web_tg:
+- alb:nonprod-web-tg-80
+- alb:nonprod-web-tg-443
+
+tcp_tg:
+- alb:nonprod-tg-1024
+- alb:nonprod-tg-1025
+- alb:nonprod-tg-1026
+- alb:nonprod-tg-1027
+- alb:nonprod-tg-1028
+- alb:nonprod-tg-1029
+- alb:nonprod-tg-1030
+- alb:nonprod-tg-1031
+- alb:nonprod-tg-1032
+- alb:nonprod-tg-1033
+
+ssl_key: ((lets-encrypt-privkey))
+
+ssl_cert: ((lets-encrypt-cert))
+
+ssl_ca: ((lets-encrypt-chain))

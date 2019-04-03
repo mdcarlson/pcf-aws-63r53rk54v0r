@@ -1,0 +1,23 @@
+---
+# terraform output ops_manager_iam_user_access_key | pbcopy
+access_key_id: ((opsman-iam-access-key))
+# terraform output ops_manager_iam_user_secret_key | pbcopy
+secret_access_key: ((opsman-iam-secret-key))
+# terraform output vms_security_group_id | pbcopy
+security_group: sg-037611fc9f21b697b
+# terraform output ops_manager_ssh_public_key_name | pbcopy
+key_pair_name: nonprod-ops-manager-key
+# terraform output ops_manager_ssh_private_key | pbcopy
+ssh_private_key: ((opsman-ssh.private_key))
+
+# terraform output infrastructure_subnet_ids
+infrastructure_subnet_b: subnet-02ba73534006a8f08
+infrastructure_subnet_c: subnet-02bee5e9f9e9549d9
+
+# terraform output pas_subnet_ids
+pas_subnet_b: subnet-09e4c588602831a93
+pas_subnet_c: subnet-0fb91396cb0ed3872
+
+# terraform output services_subnet_ids
+services_subnet_b: subnet-0b09aadc8143ab2dc
+services_subnet_c: subnet-04c0cd25a2c03f3b2
