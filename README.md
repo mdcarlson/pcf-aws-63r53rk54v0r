@@ -13,3 +13,13 @@ It describes the following foundations:
 ## Attribution
 
 Terraforming code comes from the [`terraforming-aws`](https://github.com/pivotal-cf/terraforming-aws) repo.
+
+## TODOs
+
+- Deploy Control Plane Ops Manager with Platform Automation?
+- Create S3 buckets in control plane terraforming
+- Use RDS for database instead of internal
+- Update certificates
+- Base pas configuration, with operations capturing features?
+- cert creation via terraform
+- investigate what minimum set of alternative names the certs need

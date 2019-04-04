@@ -13,13 +13,6 @@ Specs include:
 1. postgresql: `brew install postgresql`
 1. Om CLI
 
-## TODO
-
-- capture tfstate into blobstore
-- cert creation via terraform
-- investigate why RDS is postgres
-- investigate what minimum set of alternative names the certs need
-
 ## X. Create service account
 
 1. Log into AWS Console (`pcf-practice`)

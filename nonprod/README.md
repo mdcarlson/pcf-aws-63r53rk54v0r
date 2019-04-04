@@ -79,10 +79,3 @@ Delete the installation (products, BOSH Director, and Ops Manager) via:
 
 Unpave the IaaS via
 1. `terraform destroy`
-
-# TODOS
-
-- create S3 buckets in control plane terraforming
-- use RDS for database instead of internal
-- update certificates
-- base pas configuration, with operations capturing features?
