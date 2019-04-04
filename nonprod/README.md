@@ -32,6 +32,10 @@ Terraform IaaS by
     1. `terraform output ops_manager_ssh_private_key > ../opsman.pem`
     1. `chmod 600 ../opsman.pem`
 
+## X. Configure root DNS
+
+In the root DNS Zone (Azure) add a NS record with values `terraform output env_dns_zone_name_servers` for name `nonprod.aws`.
+
 ## X. Populate Credhub with appropriate secrets
 
 First we need to look up the appropriate client/secret for connecting to *Control Plane* Credhub from *BOSH* Credhub.
