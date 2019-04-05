@@ -88,3 +88,7 @@ locals {
 
   actual_tags = "${merge(var.tags, local.default_tags)}"
 }
+
+variable "contact_email" {
+  type = "string"
+}

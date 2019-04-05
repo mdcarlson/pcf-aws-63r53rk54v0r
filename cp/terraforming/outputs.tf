@@ -169,3 +169,20 @@ output "control_plane_subnet_cidrs" {
 output "control_plane_subnet_availability_zones" {
   value = "${module.control_plane.subnet_availability_zones}"
 }
+
+/*****************************
+ * Let's Encrypt *
+ *****************************/
+
+output "lets_encrypt_cert" {
+  value = "${acme_certificate.certificate.certificate_pem}"
+}
+
+output "lets_encrypt_privkey" {
+  sensitive = true
+  value     = "${acme_certificate.certificate.private_key_pem}"
+}
+
+output "lets_encrypt_chain" {
+  value = "${acme_certificate.certificate.issuer_pem}"
+}

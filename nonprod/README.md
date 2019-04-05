@@ -7,20 +7,7 @@ Specs include:
 - Control Plane 0.0.27
 - PAS 2.4.x
 - Healthwatch 1.5.x
-
-## X. Generate SSL certificates
-
-1. Generate certs using
-    ```
-    sudo certbot --server https://acme-v02.api.letsencrypt.org/directory \
-    -d nonprod.aws.63r53rk54v0r.com \
-    -d '*.nonprod.aws.63r53rk54v0r.com' \
-    -d '*.apps.nonprod.aws.63r53rk54v0r.com' \
-    -d '*.sys.nonprod.aws.63r53rk54v0r.com' \
-    -d '*.login.sys.nonprod.aws.63r53rk54v0r.com' \
-    -d '*.uaa.sys.nonprod.aws.63r53rk54v0r.com' \
-    --manual --preferred-challenges dns-01 certonly
-    ```
+- Let's Encrypt generated SSL certficates
 
 ## X. Pave the IaaS
 
@@ -32,9 +19,22 @@ Terraform IaaS by
     1. `terraform output ops_manager_ssh_private_key > ../opsman.pem`
     1. `chmod 600 ../opsman.pem`
 
+## X. Obtain SSL certs
+
+1. `mkdir certs`
+1. `cd terraforming`
+1. Write certs out via
+    ```
+    terraform output lets_encrypt_cert > ../certs/cert.pem && \
+    terraform output lets_encrypt_chain > ../certs/chain.pem && \
+    terraform output lets_encrypt_privkey > ../certs/privkey.pem && \
+    terraform output lets_encrypt_cert > ../certs/fullchain.pem && \
+    terraform output lets_encrypt_chain >> ../certs/fullchain.pem
+    ```
+
 ## X. Configure root DNS
 
-In the root DNS Zone (Azure) add a NS record with values `terraform output env_dns_zone_name_servers` for name `nonprod.aws`.
+In the root DNS Zone (AWS) add a NS record with values `terraform output env_dns_zone_name_servers` for name `nonprod`.
 
 ## X. Populate Credhub with appropriate secrets
 

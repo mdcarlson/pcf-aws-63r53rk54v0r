@@ -164,3 +164,7 @@ variable "create_isoseg_resources" {
 variable "ops_manager_vm" {
   default = true
 }
+
+variable "contact_email" {
+  type = "string"
+}

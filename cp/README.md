@@ -5,11 +5,11 @@ Following the [official documentation](https://control-plane-docs.cfapps.io/) to
 Specs include:
 - Ops Manager 2.4.6
 - Control Plane 0.0.27
+- Let's Encrypt generated SSL certficates
 
 ## Prerequisites
 
 1. Terraform: `brew install terraform`
-1. certbot: `brew install certbot`
 1. postgresql: `brew install postgresql`
 1. Om CLI
 
@@ -22,25 +22,6 @@ Specs include:
 1. Attach appropriate policies and the custom policy created above
 1. Capture created credentials as `$AWS_ACCESS_KEY` and `$AWS_SECRET_KEY`
 
-## X. Generate certs
-
-1. Ensure domain has a CAA record associated with it
-1. Generate certs via:
-    ```
-    sudo certbot --server https://acme-v02.api.letsencrypt.org/directory \
-    -d cp.aws.63r53rk54v0r.com \
-    -d '*.cp.aws.63r53rk54v0r.com' \
-    -d '*.apps.cp.aws.63r53rk54v0r.com' \
-    -d '*.sys.cp.aws.63r53rk54v0r.com' \
-    -d '*.login.sys.cp.aws.63r53rk54v0r.com' \
-    -d '*.uaa.sys.cp.aws.63r53rk54v0r.com' \
-    --manual --preferred-challenges dns-01 certonly
-    ```
-1. Copy certs locally via
-    1. `mkdir certs`
-    1. `sudo cp /etc/letsencrypt/live/cp.aws.63r53rk54v0r.com/* ./certs/`
-    1. `sudo chown adam:staff certs/*`
-
 ## X. Pave IaaS
 
 1. `cd terraforming`
@@ -52,9 +33,22 @@ Specs include:
 1. Obtain the Ops Manager SSH key via `terraform output ops_manager_ssh_private_key > ../opsman.pem`
 1. `chmod 600 ../opsman.pem`
 
+## X. Obtain SSL certs
+
+1. `mkdir certs`
+1. `cd terraforming`
+1. Write certs out via
+    ```
+    terraform output lets_encrypt_cert > ../certs/cert.pem && \
+    terraform output lets_encrypt_chain > ../certs/chain.pem && \
+    terraform output lets_encrypt_privkey > ../certs/privkey.pem && \
+    terraform output lets_encrypt_cert > ../certs/fullchain.pem && \
+    terraform output lets_encrypt_chain >> ../certs/fullchain.pem
+    ```
+
 ## X. Configure root DNS
 
-In the root DNS Zone (Azure) add a NS record with values `terraform output env_dns_zone_name_servers` for name `cp.aws`.
+In the root DNS Zone (AWS) add a NS record with values `terraform output env_dns_zone_name_servers` for name `cp`.
 
 ## X. Configure Ops Manager
 

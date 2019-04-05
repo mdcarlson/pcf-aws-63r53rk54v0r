@@ -6,6 +6,7 @@ rds_instance_count = 0
 dns_suffix         = "aws.63r53rk54v0r.com"
 vpc_cidr           = "10.0.0.0/16"
 use_route53        = true
+contact_email      = "aneumann@pivotal.io"
 
 tags = {
     created_by = "aneumann"

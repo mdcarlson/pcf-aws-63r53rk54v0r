@@ -57,3 +57,7 @@ output "aws_lb_interface_endpoint_ips" {
 output "aws_ec2_interface_endpoint_ips" {
   value = "${data.aws_network_interface.ec2_endpoints.*.private_ip}"
 }
+
+output "aws_dns_zone_id" {
+  value = "${element(aws_route53_zone.pcf_zone.*.id, 0)}"
+}

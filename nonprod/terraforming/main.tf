@@ -158,3 +158,37 @@ module "rds" {
   vpc_id             = "${module.infra.vpc_id}"
   tags               = "${local.actual_tags}"
 }
+
+# Let's Encrypt certs
+provider "acme" {
+  server_url = "https://acme-v02.api.letsencrypt.org/directory"
+}
+
+resource "tls_private_key" "private_key" {
+  algorithm = "RSA"
+}
+
+resource "acme_registration" "reg" {
+  account_key_pem = "${tls_private_key.private_key.private_key_pem}"
+  email_address   = "${var.contact_email}"
+}
+
+resource "acme_certificate" "certificate" {
+  account_key_pem           = "${acme_registration.reg.account_key_pem}"
+  common_name               = "${var.env_name}.${var.dns_suffix}"
+  subject_alternative_names = [
+    "*.${var.env_name}.${var.dns_suffix}",
+    "*.apps.${var.env_name}.${var.dns_suffix}",
+    "*.sys.${var.env_name}.${var.dns_suffix}",
+    "*.login.sys.${var.env_name}.${var.dns_suffix}",
+    "*.uaa.sys.${var.env_name}.${var.dns_suffix}"
+  ]
+
+  dns_challenge {
+    provider = "route53"
+
+    config {
+      AWS_HOSTED_ZONE_ID = "${module.infra.aws_dns_zone_id}"
+    }
+  }
+}
