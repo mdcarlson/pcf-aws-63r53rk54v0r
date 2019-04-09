@@ -115,8 +115,15 @@ resource-configuration:
       id: automatic
     internet_connected: false
 vmextensions-configuration:
-- name: web-lb-security-groups
+- name: router_sg
   cloud_properties:
     security_groups:
     - vms_security_group
-    - web_lb_security_group
+- name: diegobrain_sg
+  cloud_properties:
+    security_groups:
+    - vms_security_group
+- name: tcprouter_sg
+  cloud_properties:
+    security_groups:
+    - vms_security_group

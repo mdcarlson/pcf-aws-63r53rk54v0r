@@ -369,6 +369,8 @@ resource-config:
       id: automatic
     internet_connected: false
     elb_names: ((ssh_tg))
+    additional_vm_extensions:
+    - diegobrain_sg
   diego_cell:
     instances: 1
     instance_type:
@@ -430,7 +432,7 @@ resource-config:
     internet_connected: false
     elb_names: ((web_tg))
     additional_vm_extensions:
-    - web-lb-security-groups
+    - router_sg
   syslog_adapter:
     instances: 1
     instance_type:
@@ -449,6 +451,8 @@ resource-config:
       id: automatic
     internet_connected: false
     elb_names: ((tcp_tg))
+    additional_vm_extensions:
+    - tcprouter_sg
   uaa:
     instances: 1
     instance_type:
