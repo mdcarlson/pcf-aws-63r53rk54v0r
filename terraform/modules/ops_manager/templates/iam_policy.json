@@ -117,6 +117,20 @@
       ]
     },
     {
+      "Sid": "OpsManagerSystemsManager",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:*",
+        "ssmmessages:CreateControlChannel",
+        "ssmmessages:CreateDataChannel",
+        "ssmmessages:OpenControlChannel",
+        "ssmmessages:OpenDataChannel"
+      ],
+      "Resource": [
+        "*"
+      ]
+    },
+    {
       "Sid": "OpsManagerNetworkLBPermissions",
       "Effect": "Allow",
       "Action": [
